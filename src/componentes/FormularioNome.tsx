@@ -23,7 +23,7 @@ export default function FormularioNome({ aoEnviarNome }: FormularioNomeProps) {
                 placeholder="Digite seu nome para começar..."
                 value={nome}
                 onChange={(e) => setNome(e.target.value)}
-                className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
             />
             <button
                 type="submit"
