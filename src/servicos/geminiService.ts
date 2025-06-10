@@ -14,7 +14,7 @@ export async function gerarQuestionario(nomeUsuario: string): Promise<string> {
   const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
   const prompt = `
-  Crie um questionário interativo de 10 perguntas de múltipla escolha sobre a Bíblia e a religião católica.
+  Crie um questionário interativo de 10 perguntas de múltipla escolha sobre a Bíblia, os santos e a religião católica. A cada novo questionário, gere novas perguntas, tente evitar repetições.
   Cada pergunta deve ter 4 alternativas (A, B, C, D) e apenas uma resposta correta.
   As perguntas devem ser variadas em dificuldade e cobrir tópicos como personagens bíblicos, livros da Bíblia, sacramentos, dogmas, história da Igreja e ensinamentos católicos.
   Formate a saída como um array de objetos JSON, onde cada objeto tem o seguinte formato:
