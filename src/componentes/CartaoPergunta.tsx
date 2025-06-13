@@ -1,4 +1,3 @@
-// src/componentes/CartaoPergunta.tsx
 import React from 'react';
 
 interface CartaoPerguntaProps {

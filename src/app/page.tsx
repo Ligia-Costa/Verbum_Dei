@@ -1,4 +1,3 @@
-// src/app/page.tsx
 'use client'; // Necessário para usar hooks como useState
 
 import React, { useState } from 'react';
