@@ -1,9 +1,9 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+const apiKey = process.env.GEMINI_API_KEY;
 
 if (!apiKey) {
-  throw new Error('A variável de ambiente NEXT_PUBLIC_GEMINI_API_KEY não está configurada.');
+  throw new Error('A variável de ambiente GEMINI_API_KEY não está configurada.');
 }
 
 const genAI = new GoogleGenerativeAI(apiKey);

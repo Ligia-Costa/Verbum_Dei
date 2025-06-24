@@ -39,20 +39,32 @@ export default function PaginaInicial() {
         setFeedbackRespostas(null); // Reseta o feedback
 
         try {
-            console.log(`Gerando questionário para: ${nome}`);
-            const jsonString = await gerarQuestionario(nome);
-            const questionarioGerado: Pergunta[] = JSON.parse(jsonString);
-            setPerguntas(questionarioGerado);
-            // Inicializa o array de respostas do usuário com null para cada pergunta
-            setRespostasUsuario(new Array(questionarioGerado.length).fill(null));
-            console.log('Questionário gerado:', questionarioGerado);
-        } catch (error: any) {
-            console.error('Erro ao gerar questionário:', error);
-            setErro(error.message || 'Ocorreu um erro ao gerar o questionário. Tente novamente mais tarde.');
-            setNomeUsuario(null); // Volta para o formulário de nome em caso de erro
-        } finally {
-            setCarregando(false); // Finaliza o estado de carregamento
-        }
+    console.log(`Gerando questionário para: ${nome}`);
+    const jsonString = await gerarQuestionario(nome);
+    const questionarioGerado: Pergunta[] = JSON.parse(jsonString);
+    setPerguntas(questionarioGerado);
+    // Inicializa o array de respostas do usuário com null para cada pergunta
+    setRespostasUsuario(new Array(questionarioGerado.length).fill(null));
+    console.log('Questionário gerado:', questionarioGerado);
+} catch (error: unknown) { // Agora tipado como 'unknown'
+    console.error('Erro ao gerar questionário:', error);
+
+    let errorMessage = 'Ocorreu um erro ao gerar o questionário. Tente novamente mais tarde.';
+
+    // Verifica se o erro é uma instância de Error para acessar 'message'
+    if (error instanceof Error) {
+        errorMessage = error.message;
+    } else if (typeof error === 'string') {
+        // Se o erro for uma string simples
+        errorMessage = error;
+    }
+    // Você pode adicionar mais verificações aqui se esperar outros tipos de erro
+
+    setErro(errorMessage);
+    setNomeUsuario(null); // Volta para o formulário de nome em caso de erro
+} finally {
+    setCarregando(false); // Finaliza o estado de carregamento
+}
     };
 
     // Função para lidar com a seleção de uma alternativa em uma pergunta
